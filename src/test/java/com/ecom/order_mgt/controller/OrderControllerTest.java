@@ -32,12 +32,15 @@ public class OrderControllerTest {
 
     private Long itemId = 1L;
 
+    private Orders orderOne = new Orders(1L, 1L, itemId, "Ordering Apple", LocalDateTime.now());
+
+    private Orders orderTwo = new Orders(1L, 1L, itemId, "Ordering Orange", LocalDateTime.now());
+
     @Test
     public void getOrders() {
         Long orderId = 1L;
         Long itemId = 1L;
-        Orders orders = new Orders(1L, 1L, itemId, "Ordering Apple", LocalDateTime.now());
-        doReturn(Arrays.asList(orders)).when(orderRepository).findAll();
+        doReturn(Arrays.asList(orderOne)).when(orderRepository).findAll();
         List<Orders> allOrders = orderService.getAllOrders();
         assertEquals(1, allOrders.size());
         assertEquals(orderId, allOrders.get(0).getId());
@@ -46,8 +49,7 @@ public class OrderControllerTest {
 
     @Test
     public void getOrderById() {
-        Orders orders = new Orders(1L, 1L, itemId, "Ordering Apple", LocalDateTime.now());
-        doReturn(Optional.of(orders)).when(orderRepository).findById(orderId);
+        doReturn(Optional.of(orderOne)).when(orderRepository).findById(orderId);
         Orders orderById = orderService.getOrderById(orderId);
         assertEquals(itemId, orderById.getItemId());
         assertEquals(orderId, orderById.getId());
@@ -57,5 +59,13 @@ public class OrderControllerTest {
     public void shouldReturnNotFoundExceptionOrderById() {
         doReturn(Optional.empty()).when(orderRepository).findById(orderId);
         assertThrows(OrderNotAvailable.class, () -> orderService.getOrderById(orderId));
+    }
+
+    @Test
+    public void getOrderByUserId() {
+        doReturn(Arrays.asList(orderOne, orderTwo)).when(orderRepository).findByUserId(1L);
+        List<Orders> orderByUserId = orderService.getOrderByUserId(1L);
+        assertEquals(2, orderByUserId.size());
+
     }
 }

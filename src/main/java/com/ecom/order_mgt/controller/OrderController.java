@@ -25,8 +25,14 @@ public class OrderController extends BaseController {
     }
 
     @GetMapping("/order/{id}")
-    public ResponseEntity orderById(@PathVariable Long id) {
+    public ResponseEntity getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
+
+    @GetMapping("/orders/user/{userId}")
+    public ResponseEntity getOrdersByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(orderService.getOrderByUserId(userId));
+    }
+
 
 }

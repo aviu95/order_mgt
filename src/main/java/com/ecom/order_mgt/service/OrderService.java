@@ -39,4 +39,9 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public List<Orders> getOrderByUserId(Long userId) {
+        log.info(String.format("[%s] - Getting orders by user id", appName));
+        return orderRepository.findByUserId(userId);
+    }
+
 }
