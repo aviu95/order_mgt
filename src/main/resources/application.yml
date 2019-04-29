@@ -17,5 +17,4 @@ spring:
     enabled: true
     validate-on-migrate: true
 app:
-  env: dev
   name: ecom-od

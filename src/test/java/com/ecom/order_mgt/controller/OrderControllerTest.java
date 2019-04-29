@@ -4,7 +4,6 @@ import com.ecom.order_mgt.exception.OrderNotAvailable;
 import com.ecom.order_mgt.model.dao.Orders;
 import com.ecom.order_mgt.repo.OrderRepository;
 import com.ecom.order_mgt.service.OrderService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,9 +11,12 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
@@ -25,6 +27,10 @@ public class OrderControllerTest {
 
     @Spy
     private OrderRepository orderRepository;
+
+    private Long orderId = 1L;
+
+    private Long itemId = 1L;
 
     @Test
     public void getOrders() {
@@ -40,8 +46,6 @@ public class OrderControllerTest {
 
     @Test
     public void getOrderById() {
-        Long orderId = 1L;
-        Long itemId = 1L;
         Orders orders = new Orders(1L, 1L, itemId, "Ordering Apple", LocalDateTime.now());
         doReturn(Optional.of(orders)).when(orderRepository).findById(orderId);
         Orders orderById = orderService.getOrderById(orderId);
@@ -51,7 +55,6 @@ public class OrderControllerTest {
 
     @Test
     public void shouldReturnNotFoundExceptionOrderById() {
-        Long orderId = 1L;
         doReturn(Optional.empty()).when(orderRepository).findById(orderId);
         assertThrows(OrderNotAvailable.class, () -> orderService.getOrderById(orderId));
     }
