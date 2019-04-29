@@ -14,13 +14,13 @@ public class OrderController extends BaseController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/order")
-    public ResponseEntity order(@RequestBody List<OrderRequest> orderRequest) {
+    @PostMapping("/orders")
+    public ResponseEntity orders(@RequestBody List<OrderRequest> orderRequest) {
         return ResponseEntity.ok(orderService.postOrder(orderRequest));
     }
 
-    @GetMapping("/order")
-    public ResponseEntity order() {
+    @GetMapping("/orders")
+    public ResponseEntity orders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
