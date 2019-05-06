@@ -1,7 +1,6 @@
 package com.ecom.order_mgt.model.entity;
 
 import com.ecom.order_mgt.model.dto.OrderRequest;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,14 +2,14 @@ package com.ecom.order_mgt.controller;
 
 import com.ecom.order_mgt.model.dto.OrderRequest;
 import com.ecom.order_mgt.service.OrderService;
-import com.ecom.order_mgt.utils.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.ecom.order_mgt.utils.AppConstants.*;
+import static com.ecom.order_mgt.utils.AppConstants.PAGE_INDEX_DEFAULT;
+import static com.ecom.order_mgt.utils.AppConstants.PAGE_SIZE_DEFAULT;
 
 @RestController
 public class OrderController extends BaseController {
