@@ -34,5 +34,8 @@ public class OrderController extends BaseController {
         return ResponseEntity.ok(orderService.getOrderByUserId(userId));
     }
 
-
+    @GetMapping("/orders/user")
+    public ResponseEntity getOrdersWithUser(@RequestParam("pageIndex") Integer page, @RequestParam("size") Integer size, @RequestParam(value = "sort", required = false) String sort) {
+        return ResponseEntity.ok(orderService.getOrderDetails(page, size, sort));
+    }
 }

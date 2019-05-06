@@ -1,7 +1,8 @@
 package com.ecom.order_mgt.controller;
 
 import com.ecom.order_mgt.exception.OrderNotAvailable;
-import com.ecom.order_mgt.model.dao.Orders;
+import com.ecom.order_mgt.model.entity.Orders;
+import com.ecom.order_mgt.model.entity.Users;
 import com.ecom.order_mgt.repo.OrderRepository;
 import com.ecom.order_mgt.service.OrderService;
 import org.junit.jupiter.api.Test;
@@ -32,9 +33,9 @@ public class OrderControllerTest {
 
     private Long itemId = 1L;
 
-    private Orders orderOne = new Orders(1L, 1L, itemId, "Ordering Apple", LocalDateTime.now());
+    private Orders orderOne = new Orders(1L, new Users(1L, "Avi", "U"), itemId, "Ordering Apple", LocalDateTime.now());
 
-    private Orders orderTwo = new Orders(1L, 1L, itemId, "Ordering Orange", LocalDateTime.now());
+    private Orders orderTwo = new Orders(1L, new Users(1L, "Dad", "G"), itemId, "Ordering Orange", LocalDateTime.now());
 
     @Test
     public void getOrders() {

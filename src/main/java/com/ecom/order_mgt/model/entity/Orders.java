@@ -1,6 +1,7 @@
-package com.ecom.order_mgt.model.dao;
+package com.ecom.order_mgt.model.entity;
 
 import com.ecom.order_mgt.model.dto.OrderRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,9 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private Users userId;
 
     private Long itemId;
 
@@ -31,8 +34,8 @@ public class Orders {
 
     private LocalDateTime orderDate;
 
-    public Orders(OrderRequest orderRequest) {
-        this.userId = orderRequest.getUserId();
+    public Orders(OrderRequest orderRequest, Users users) {
+        this.userId = users;
         this.itemId = orderRequest.getItemId();
         this.orderDesc = orderRequest.getOrderDesc();
         this.orderDate = LocalDateTime.now();
