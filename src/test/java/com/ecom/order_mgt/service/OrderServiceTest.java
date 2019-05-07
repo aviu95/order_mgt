@@ -1,10 +1,9 @@
-package com.ecom.order_mgt.controller;
+package com.ecom.order_mgt.service;
 
 import com.ecom.order_mgt.exception.OrderNotAvailable;
 import com.ecom.order_mgt.model.entity.Orders;
 import com.ecom.order_mgt.model.entity.Users;
 import com.ecom.order_mgt.repo.OrderRepository;
-import com.ecom.order_mgt.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderControllerTest {
+public class OrderServiceTest {
 
     @InjectMocks
     private OrderService orderService;
