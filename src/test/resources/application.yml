@@ -1,12 +1,12 @@
 server:
   servlet:
     context-path: /ecom-od
-  port: 8090
+  port: 7000
 spring:
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${ORDER_DB_URL:jdbc:mysql://localhost:3306/e_order_mgt}
-    username: ${ORDER_DB_USERNAME:root}
+    driverClassName: org.h2.Driver
+    url: ${ORDER_DB_URL:jdbc:h2:mem:e_order_mgt;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${ORDER_DB_USERNAME:sa}
     password: ${ORDER_DB_PASSWORD:}
   jpa:
     show-sql: true
@@ -19,6 +19,11 @@ spring:
   cloud:
     stream:
       bindings:
+        output:
+          destination: user
+          content-type: application/json
+          producer:
+            sync: true
         input:
           destination: user
           content-type: application/json
@@ -29,4 +34,4 @@ app:
 
 services:
   user-mgt:
-    url: ${USER_URL:http://localhost:8091/ecom-user}
+    url: ${USER_URL:http://localhost:7001/ecom-user}

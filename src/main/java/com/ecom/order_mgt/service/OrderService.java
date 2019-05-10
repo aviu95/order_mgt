@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,7 +62,10 @@ public class OrderService {
 
     public List<Orders> getOrderByUserId(Long userId) {
         log.info(String.format("[%s] - Getting orders by user id", appName));
-        return orderRepository.findByUserId(userId);
+        Optional<Users> users = usersRepository.findById(userId);
+        if(!users.isPresent())
+            return Collections.emptyList();
+        return orderRepository.findByUserId(users.get());
     }
 
     public Paged<OrderUserDetails> getOrderDetails(Integer page, Integer size, String sort) {

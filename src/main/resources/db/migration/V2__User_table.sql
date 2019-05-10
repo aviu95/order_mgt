@@ -1,5 +1,5 @@
 create table users (
-    id BIGINT  PRIMARY KEY  default 0,
+    id BIGINT default 0 PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL
 );

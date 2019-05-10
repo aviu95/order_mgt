@@ -1,6 +1,7 @@
 package com.ecom.order_mgt.lisenters;
 
 
+import com.ecom.order_mgt.model.dto.StreamModel;
 import com.ecom.order_mgt.utils.AppConstants;
 import com.ecom.order_mgt.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +19,10 @@ public class EventListener {
     private UserService userService;
 
     @StreamListener(Sink.INPUT)
-    public void inputListener(@Payload String value) {
-        log.info(String.format("Message received - %s ", value));
-        if(AppConstants.USER_CREATED.equals(value)) {
-            userService.syncUserDetails();
+    public void inputListener(@Payload StreamModel streamModel) {
+        log.info(String.format("Message received - %s ", streamModel.getType()));
+        if(AppConstants.USER_CREATED.equals(streamModel.getType())) {
+            userService.syncUserDetails(false, streamModel.getUserIds());
         }
     }
 
