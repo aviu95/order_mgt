@@ -6,16 +6,12 @@ import com.ecom.order_mgt.model.entity.OrderUserDetails;
 import com.ecom.order_mgt.model.entity.Orders;
 import com.ecom.order_mgt.model.entity.Users;
 import com.ecom.order_mgt.service.OrderService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.aspectj.weaver.ast.Or;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -51,9 +47,9 @@ public class OrderControllerTest {
 
     private Long itemId = 1L;
 
-    Users userOne = new Users(1L, "Avi", "U");
+    private Users userOne = new Users(1L, "Avi", "U");
 
-    Orders orderOne = new Orders(orderId, userOne, itemId, "Ordering Apple", LocalDateTime.now());
+    private Orders orderOne = new Orders(orderId, userOne, itemId, "Ordering Apple", LocalDateTime.now());
 
     @BeforeEach
     public void init() {
