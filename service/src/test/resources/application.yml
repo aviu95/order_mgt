@@ -1,0 +1,37 @@
+server:
+  servlet:
+    context-path: /ecom-od
+  port: 7000
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: ${ORDER_DB_URL:jdbc:h2:mem:e_order_mgt;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${ORDER_DB_USERNAME:sa}
+    password: ${ORDER_DB_PASSWORD:}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: validate
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: user
+          content-type: application/json
+          producer:
+            sync: true
+        input:
+          destination: user
+          content-type: application/json
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+app:
+  name: ecom-od
+
+services:
+  user-mgt:
+    url: ${USER_URL:http://localhost:7001/ecom-user}

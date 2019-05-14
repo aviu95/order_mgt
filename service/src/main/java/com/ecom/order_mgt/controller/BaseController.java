@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestControllerAdvice
 @RequestMapping("/api")
 @Slf4j
+@CrossOrigin
 public class BaseController {
 
     @ExceptionHandler(OrderNotAvailable.class)

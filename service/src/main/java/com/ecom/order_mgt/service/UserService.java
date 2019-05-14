@@ -27,4 +27,9 @@ public class UserService {
         usersRepository.saveAll(alluser);
     }
 
+
+    public List<Users> getUsers() {
+        log.info("Fetching users from Table");
+        return usersRepository.findAll();
+    }
 }

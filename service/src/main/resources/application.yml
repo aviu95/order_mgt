@@ -1,0 +1,32 @@
+server:
+  servlet:
+    context-path: /ecom-od
+  port: 8090
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${ORDER_DB_URL:jdbc:mysql://localhost:3306/e_order_mgt}
+    username: ${ORDER_DB_USERNAME:root}
+    password: ${ORDER_DB_PASSWORD:}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: validate
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: user
+          content-type: application/json
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+app:
+  name: ecom-od
+
+services:
+  user-mgt:
+    url: ${USER_URL:http://localhost:8091/ecom-user}

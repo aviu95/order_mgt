@@ -11,6 +11,7 @@ import java.util.List;
 import static com.ecom.order_mgt.utils.AppConstants.PAGE_INDEX_DEFAULT;
 import static com.ecom.order_mgt.utils.AppConstants.PAGE_SIZE_DEFAULT;
 
+@CrossOrigin
 @RestController
 public class OrderController extends BaseController {
 
